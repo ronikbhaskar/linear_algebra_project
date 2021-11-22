@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device=width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Linear Transformation Visualizer</title>
+    </head>
+    <body>
+        <div class="horizontal-container">
+            <div class="matrix-container">
+                <h3>
+                    <label class="toggle">
+                        <input type="checkbox" class="checkbox" id="enable_C" onclick="toggleC()"/>
+                        Matrix C
+                    </label>
+                </h3>
+                <div class="matrix" name="matrixC">
+                    <div class="field00"><textarea id="C00" name="field00"></textarea></div>
+                    <div class="field01"><textarea id="C01" name="field01"></textarea></div>
+                    <div class="field02"><textarea id="C02" name="field02"></textarea></div>
+                    <div class="field10"><textarea id="C10" name="field10"></textarea></div>
+                    <div class="field11"><textarea id="C11" name="field11"></textarea></div>
+                    <div class="field12"><textarea id="C12" name="field12"></textarea></div>
+                    <div class="field20"><textarea id="C20" name="field20"></textarea></div>
+                    <div class="field21"><textarea id="C21" name="field21"></textarea></div>
+                    <div class="field22"><textarea id="C22" name="field22"></textarea></div>
+                </div>
+                <button type="button" class="button" onclick="matCValid = invert(matA,matC,matCfields) || matCValid;"><h4>C=inv(A)</h4></button>
+            </div>
+            <div class="matrix-container">
+                <h3>
+                    <label class="toggle">
+                        <input type="checkbox" class="checkbox" id="enable_B" onclick="toggleB()"/>
+                        Matrix B
+                    </label>
+                </h3>
+                <div class="matrix" name="matrixB">
+                    <div class="field00"><textarea id="B00" name="field00"></textarea></div>
+                    <div class="field01"><textarea id="B01" name="field01"></textarea></div>
+                    <div class="field02"><textarea id="B02" name="field02"></textarea></div>
+                    <div class="field10"><textarea id="B10" name="field10"></textarea></div>
+                    <div class="field11"><textarea id="B11" name="field11"></textarea></div>
+                    <div class="field12"><textarea id="B12" name="field12"></textarea></div>
+                    <div class="field20"><textarea id="B20" name="field20"></textarea></div>
+                    <div class="field21"><textarea id="B21" name="field21"></textarea></div>
+                    <div class="field22"><textarea id="B22" name="field22"></textarea></div>
+                </div>
+                <button type="button" class="button" onclick="matBValid = matSquare(matB, matBfields) || matBValid;"><h4>B^2</h4></button>
+            </div>
+            <div class="matrix-container">
+                <h3>
+                    <label class="toggle">
+                        <input type="checkbox" class="checkbox" id="enable_A" onclick="toggleA()"/>
+                        Matrix A
+                    </label>
+                </h3>
+                <div class="matrix" name="matrixA">
+                    <div class="field00"><textarea id="A00" name="field00"></textarea></div>
+                    <div class="field01"><textarea id="A01" name="field01"></textarea></div>
+                    <div class="field02"><textarea id="A02" name="field02"></textarea></div>
+                    <div class="field10"><textarea id="A10" name="field10"></textarea></div>
+                    <div class="field11"><textarea id="A11" name="field11"></textarea></div>
+                    <div class="field12"><textarea id="A12" name="field12"></textarea></div>
+                    <div class="field20"><textarea id="A20" name="field20"></textarea></div>
+                    <div class="field21"><textarea id="A21" name="field21"></textarea></div>
+                    <div class="field22"><textarea id="A22" name="field22"></textarea></div>
+                </div>
+                <button type="button" class="button" onclick="matAValid = invert(matC,matA,matAfields) || matAValid;"><h4>A=inv(C)</h4></button>
+            </div>
+            <div class="vector-container">
+                <h3>
+                    <label class="toggle">
+                        <input type="checkbox" class="checkbox" id="enable_vector" onclick="toggleVector()" />
+                        Vector
+                    </label>
+                </h3>
+                <div class="vector" name="vector">
+                    <div class="field00"><textarea id="v0" name="field0"></textarea></div>
+                    <div class="field10"><textarea id="v1" name="field1"></textarea></div>
+                    <div class="field20"><textarea id="v2" name="field2"></textarea></div>
+                </div>
+            </div>
+            <div>
+                <h3 class="toggle">
+                    <label>
+                        <input type="checkbox" class="checkbox" id="enable_basis" onclick="toggleBasis()" />
+                        Basis Vectors
+                    </label>
+                </h3>
+                <h3 class="toggle">
+                    <label>
+                        <input type="checkbox" class="checkbox" id="enable_grid" onclick="toggleGrid()" />
+                        Vector Grid
+                    </label>
+                </h3>
+                <h3 class="toggle">
+                    <label>
+                        <input type="checkbox" class="checkbox" id="enable_axis_grid" onclick="toggleAxisGrid()" />
+                        View Axial Grid
+                    </label>
+                </h3>
+                <h3 class="toggle">
+                    <label>
+                        <input type="checkbox" class="checkbox" id="enable_axes" onclick="toggleAxes()" />
+                        View Axes
+                    </label>
+                </h3>
+                <button type="button" class="button" onclick="changeGridZoom()"><h4>Change Grid Scale</h4></button>
+            </div>
+            <div>
+                <h3>
+                    <label class="toggle" id="t_label">
+                        t = 
+                    </label>
+                    <br />
+                    <input type="range" class="slider" id="t_var" max=100 min=0 oninput="sliderUpdate()" />
+                </h3>
+            </div>
+            <div>
+                <h3>
+                    <div class="dropdown">
+                        <button class="dropbtn"><h4>Use Preset for Matrix A</h4></button>
+                        <div class="dropdown-content">
+                            <button class="button" onclick="usePresetA(0)">Rotation</button>
+                            <button class="button" onclick="usePresetA(1)">Diagonal</button>
+                            <button class="button" onclick="usePresetA(2)">Upper Triangular</button>
+                            <button class="button" onclick="usePresetA(3)">Lower Triangular</button>
+                            <button class="button" onclick="usePresetA(4)">Symmetric</button>
+                            <button class="button" onclick="usePresetA(5)">Projection</button>
+                            <button class="button" onclick="usePresetA(6)">Orthogonal</button>
+                        </div>
+                    </div>
+                </h3>
+                <h3>
+                    <div class="dropdown">
+                        <button class="dropbtn"><h4>Use Preset for Matrix B</h4></button>
+                        <div class="dropdown-content">
+                            <button class="button" onclick="usePresetB(0)">Rotation</button>
+                            <button class="button" onclick="usePresetB(1)">Diagonal</button>
+                            <button class="button" onclick="usePresetB(2)">Upper Triangular</button>
+                            <button class="button" onclick="usePresetB(3)">Lower Triangular</button>
+                            <button class="button" onclick="usePresetB(4)">Symmetric</button>
+                            <button class="button" onclick="usePresetB(5)">Projection</button>
+                            <button class="button" onclick="usePresetB(6)">Orthogonal</button>
+                        </div>
+                    </div>
+                </h3>
+                <h3>
+                    <div class="dropdown">
+                        <button class="dropbtn"><h4>Use Preset for Matrix C</h4></button>
+                        <div class="dropdown-content">
+                            <button class="button" onclick="usePresetC(0)">Rotation</button>
+                            <button class="button" onclick="usePresetC(1)">Diagonal</button>
+                            <button class="button" onclick="usePresetC(2)">Upper Triangular</button>
+                            <button class="button" onclick="usePresetC(3)">Lower Triangular</button>
+                            <button class="button" onclick="usePresetC(4)">Symmetric</button>
+                            <button class="button" onclick="usePresetC(5)">Projection</button>
+                            <button class="button" onclick="usePresetC(6)">Orthogonal</button>
+                        </div>
+                    </div>
+                </h3>
+            </div>
+        </div>
+        <div id="plot" class="page-item"></div>
+        <h3></h3>
+        <h3></h3>
+        <script src="https://cdn.plot.ly/plotly-2.6.3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.min.js" integrity="sha512-2/6UJO9SBO6ElzgeETlFUdHgMkhe+0QZH64KTtz18x6GA3Z6PpBHDJFvWrGCsXVQI1E2S/pB4Zqqdn0MEv5+Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
