@@ -432,6 +432,7 @@ function displayVectors() {
         data.push(vectorGridTrace);
     }
     Plotly.react(plotlyDiv, data, layout);
+    showLinTransformation();
     return;
 }
 
@@ -611,6 +612,32 @@ function usePresetC (choice) {
     matCValid = true;
     displayVectors();
 }
+
+const rows = document.querySelectorAll('[id^="row"]');
+
+function showLinTransformation () {
+    // let disp = ["|1\t0\t0|","|0\t1\t0|","|0\t0\t1|"];
+    let workingMat = [[1,0,0],[0,1,0],[0,0,1]];
+
+    if (showA && matAValid) {
+        workingMat = math.multiply(workingMat, matA);
+    }
+
+    if (showB && matBValid) {
+        workingMat = math.multiply(workingMat, matB);
+    }
+
+    if (showC && matCValid) {
+        workingMat = math.multiply(workingMat, matC);
+    }
+
+    rows.forEach(row => {
+        let index = row.id[3] - 1;
+        row.innerText = workingMat[index][0].toFixed(2)+"\t"+workingMat[index][1].toFixed(2)+"\t"+workingMat[index][2].toFixed(2);
+    });
+}
+
+showLinTransformation();
 
 sliderUpdate();
 displayVectors();
