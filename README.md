@@ -2,7 +2,7 @@
 
 ## Setup
 
-To run the project with the files from the GitHub, download the source code, and open `index.html` with a browser (Chrome is recommended. `index.html` can be found in the folder `src/`.
+To run the project with the files from the GitHub, download the source code (go to https://github.com/ronikbhaskar/linear_algebra_project and click the green "Code" button), and open `index.html` with a browser (you can probably just double-click). Chrome is recommended. `index.html` can be found in the folder `src/`.
 
  - Be sure you are connected to WiFi to run this project, as it uses CDN dependencies to make the project size smaller without using npm.
 
