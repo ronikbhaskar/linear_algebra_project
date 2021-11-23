@@ -613,23 +613,34 @@ function usePresetC (choice) {
     displayVectors();
 }
 
+const expr = document.getElementById("expr");
 const rows = document.querySelectorAll('[id^="row"]');
 
 function showLinTransformation () {
     // let disp = ["|1\t0\t0|","|0\t1\t0|","|0\t0\t1|"];
+    let composition = " =";
     let workingMat = [[1,0,0],[0,1,0],[0,0,1]];
 
     if (showA && matAValid) {
+        composition = "A" + composition;
         workingMat = math.multiply(workingMat, matA);
     }
 
     if (showB && matBValid) {
+        composition = "B" + composition;
         workingMat = math.multiply(workingMat, matB);
     }
 
     if (showC && matCValid) {
+        composition = "C" + composition;
         workingMat = math.multiply(workingMat, matC);
     }
+
+    if (composition == " =") {
+        composition = "I" + composition;
+    }
+
+    expr.innerText = composition;
 
     rows.forEach(row => {
         let index = row.id[3] - 1;
