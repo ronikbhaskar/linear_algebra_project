@@ -511,6 +511,8 @@ function generateRandomVector () {
 function generateRandomLinCom (vec1, vec2) {
     let alpha = math.floor(5.5 * math.random() - 2);
     let beta = math.floor(5.5 * math.random() - 2);
+    alpha = alpha == 0 ? 1 : alpha;
+    beta = beta == 0 ? 1 : beta;
     return math.add(math.multiply(alpha,vec1),math.multiply(beta,vec2));
 }
 
@@ -560,9 +562,14 @@ function generatePresetMatrix (choice) {
             mat = [vec1, vec2, vec3];
             break;
         case 6: // Orthogonal, uses the Gram-Schmidt process
-            let bas1 = generateRandomVector();
-            let bas2 = generateRandomVector();
-            let bas3 = generateRandomVector();
+            let bas1 = iHat;
+            let bas2 = jHat;
+            let bas3 = kHat;
+
+            bas1 = generateRandomLinCom(bas1,bas2);
+            bas1 = generateRandomLinCom(bas1,bas3);
+            bas2 = generateRandomLinCom(bas1,bas2);
+            bas3 = generateRandomLinCom(bas2,bas3);
 
             // saving time on computations
             bas1dotbas1 = math.dot(bas1,bas1);
