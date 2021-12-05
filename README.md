@@ -25,7 +25,7 @@ Alternatively, go to this link: (I have yet to create a link) to run the visuali
  - The basis vectors are red, green, and blue and correspond to x = (1,0,0), y = (0,1,0), and z = (0,0,1) respectively.
 
  - To see the coordinates of any vector, simply hover your mouse over it.
-   - Note: There is a bug where if you are in Turntable Rotation mode, you cannot hover over vectors of the form (a,0,0).
+   - Note: There is a bug where if you are in Turntable Rotation mode, you cannot hover over vectors of the form (0,0,a).
 
  - To go back to the original view, click the house icon on the viewing window. That menu also allows you to choose different rotation types and even save the graph as a .png file.
 
