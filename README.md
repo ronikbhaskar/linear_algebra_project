@@ -6,7 +6,7 @@ To run the project with the files from the GitHub, download the source code (go 
 
  - Be sure you are connected to WiFi to run this project, as it uses CDN dependencies to make the project size smaller without using npm.
 
-Alternatively, go to this link: (I have yet to create a link) to run the visualizer.
+Alternatively, go to this link: (https://61b7cc0abc9000332febc87d--compassionate-bartik-4de599.netlify.app/) to run the visualizer.
 
 ## Features
 
