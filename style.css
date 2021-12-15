@@ -20,6 +20,13 @@ body {
     margin: 2em;
 }
 
+.author {
+    color: #fff;
+    font-size: small;
+    white-space: nowrap;
+    /* font-family: inherit; */
+}
+
 h3 {
     color: #fff;
     margin: 1px 0 2px;
