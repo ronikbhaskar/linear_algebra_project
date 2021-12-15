@@ -525,12 +525,23 @@ function generatePresetMatrix (choice) {
     let mat = [[null,null,null],[null,null,null],[null,null,null]]
     switch(choice) {
         case 0: // Rotation
-            let rotMat = [["cos(2pi*t)","-sin(2pi*t)",0],["sin(2pi*t)","cos(2pi*t)",0],[0,0,1]];
-            let randomStart = math.floor(math.random() * 2.5);
-            for (i = 0; i <= 2; i++) {
-                mat[i] = rotMat[(i + randomStart) % 3];
+            switch(math.floor(math.random() * 2.5)) {
+                case 0:
+                    mat = [["cos(2pi*t)","-sin(2pi*t)",0],["sin(2pi*t)","cos(2pi*t)",0],[0,0,1]];
+                    break;
+                case 1:
+                    mat = [["cos(2pi*t)",0,"-sin(2pi*t)"],[0,1,0],["sin(2pi*t)",0,"cos(2pi*t)"]];
+                    break;
+                default:
+                    mat = [[1,0,0],[0,"cos(2pi*t)","-sin(2pi*t)"],[0,"sin(2pi*t)","cos(2pi*t)"]];
+                    break;
             }
-            // mat = rotMat;
+            // let rotMat = [["cos(2pi*t)","-sin(2pi*t)",0],["sin(2pi*t)","cos(2pi*t)",0],[0,0,1]];
+            // let randomStart = math.floor(math.random() * 2.5);
+            // for (i = 0; i <= 2; i++) {
+            //     mat[i] = rotMat[(i + randomStart) % 3];
+            // }
+            // // mat = rotMat;
             break;
         case 1: // Diagonal
             mat = [[generateRandomInt(),0,0],[0,generateRandomInt(),0],[0,0,generateRandomInt()]];
