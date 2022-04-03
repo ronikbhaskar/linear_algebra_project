@@ -1,12 +1,16 @@
 # Linear Transformations in R^3
 
+WARNING: https://compassionate-bartik-4de599.netlify.app/ is deprecated and support will be removed soon. Instead, please use:
+
+## https://ronikbhaskar.github.io/linear_transformation_visualizer/
+
 ## Setup
 
-To run the project with the files from the GitHub, download the source code (go to https://github.com/ronikbhaskar/linear_algebra_project and click the green "Code" button), and open `index.html` with a browser (you can probably just double-click). Chrome is recommended.
+To run the project with the files from the GitHub, download the source code (go to https://github.com/ronikbhaskar/linear_transformation_visualizer and click the green "Code" button), and open `index.html` with a browser (you can probably just double-click). Chrome is recommended.
 
- - Be sure you are connected to WiFi to run this project, as it uses CDN dependencies to make the project size smaller without using npm.
+ - Make sure you are connected to the Internet to run this project, as it uses CDN dependencies to make the project size smaller without using npm.
 
-Alternatively, go to this link: (https://compassionate-bartik-4de599.netlify.app/) to run the visualizer.
+Alternatively, go to this link: (https://ronikbhaskar.github.io/linear_transformation_visualizer/) to run the visualizer.
 
 ## Features
 
